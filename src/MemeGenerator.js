@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 
+// Meme generator component class
 class MemeGenerator extends Component {
+	// the construction function is invoked when the meme generator is instantiated
 	constructor() {
 		super();
+		// Initializing state to save data
 		this.state = {
 			topText: "",
 			bottomText: "",
@@ -13,7 +16,10 @@ class MemeGenerator extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	};
     
-  componentDidMount() {
+	// The componentDidMount() lifecycle method runs after 
+  //	all the elements of the page are rendered
+	componentDidMount() {
+		// get memes from imgflip API
 		fetch("https://api.imgflip.com/get_memes")
 			.then(response => response.json())
 			.then(response => {
@@ -21,21 +27,22 @@ class MemeGenerator extends Component {
 				this.setState({ allMemeImgs: memes });
 			});
 	};
-    
-	handleChange(event) {
-		const { name, value } = event.target;
+		
+	// everytime the input box is used the state is updated
+	handleChange(e) {
+		const { name, value } = e.target;
 		this.setState({ [name]: value });
 	};
-     
-	handleSubmit(event) {
-		event.preventDefault();
-		// get a random integer (index in the array)
+		
+	handleSubmit(e) {
+		e.preventDefault();
+		// gets a random integer (index in the array)
 		const randNum = Math.floor(Math.random() * this.state.allMemeImgs.length);
 
-		// get the meme from that index
+		// gets the meme from that index
 		const randMemeImg = this.state.allMemeImgs[randNum].url;
 
-		// set `randomImg` to the `.url` of the random item I grabbed
+		// sets randomImg to the .url of the random item I grabbed
 		this.setState({ randomImg: randMemeImg });
 	};
 	

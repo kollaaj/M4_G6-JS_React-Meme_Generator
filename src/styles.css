@@ -42,6 +42,7 @@ h1 {
   height: 4rem;
   border: none;
   margin: 2rem 0;
+  padding-left: 0.5rem;
   border-bottom: 0.5rem solid #0b316e;
   border-radius: 0.3rem;
   font-size: 25px;
